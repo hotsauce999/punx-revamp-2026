@@ -62,6 +62,30 @@ h1, h2, h3, .logo, .section-number, .os-logo {
     color: var(--color-yellow);
 }
 
+.logo-mark {
+    display: inline-block;
+    height: 28px;
+    aspect-ratio: 169 / 34;
+    background-color: var(--color-yellow);
+    -webkit-mask-image: url('img/punx-logo.png');
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    -webkit-mask-position: left center;
+    mask-image: url('img/punx-logo.png');
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    mask-position: left center;
+    transition: opacity 0.2s ease;
+}
+
+.logo-mark:hover {
+    opacity: 0.85;
+}
+
+.footer-top .logo-mark {
+    height: 32px;
+}
+
 .section-number {
     font-size: 0.9rem;
     letter-spacing: 1px;
