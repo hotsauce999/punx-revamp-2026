@@ -15,6 +15,27 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 revealItems.forEach((item) => revealObserver.observe(item));
 
+// Mobile hamburger menu
+(() => {
+    const toggle = document.getElementById('navToggle');
+    const nav = document.getElementById('mainNav');
+    if (!toggle || !nav) return;
+
+    const setOpen = (isOpen) => {
+        nav.classList.toggle('is-open', isOpen);
+        toggle.setAttribute('aria-expanded', String(isOpen));
+        document.body.classList.toggle('nav-open', isOpen);
+    };
+
+    toggle.addEventListener('click', () => {
+        setOpen(!nav.classList.contains('is-open'));
+    });
+
+    nav.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => setOpen(false));
+    });
+})();
+
 window.addEventListener('load', () => {
     const heroLeft = document.querySelector('.hero-left');
     const heroRight = document.querySelector('.hero-right');
@@ -94,6 +115,27 @@ window.addEventListener('load', () => {
             tiles.forEach((tile) => {
                 const show = filter === 'all' || tile.dataset.category === filter;
                 tile.classList.toggle('is-hidden', !show);
+            });
+        });
+    });
+})();
+
+// Insights page: filter tabs
+(() => {
+    const tabs = document.querySelectorAll('#insightFilterTabs .filter-tab');
+    const cards = document.querySelectorAll('#insightGrid .insight-card');
+    if (!tabs.length || !cards.length) return;
+
+    tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+            tabs.forEach((t) => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            const filter = tab.dataset.filter;
+            cards.forEach((card) => {
+                const categories = (card.dataset.category || '').split(' ');
+                const show = filter === 'all' || categories.includes(filter);
+                card.classList.toggle('is-hidden', !show);
             });
         });
     });
