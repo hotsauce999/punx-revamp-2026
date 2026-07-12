@@ -66,15 +66,10 @@ h1, h2, h3, .logo, .section-number, .os-logo {
     display: inline-block;
     height: 28px;
     aspect-ratio: 169 / 34;
-    background-color: var(--color-yellow);
-    -webkit-mask-image: url('img/punx-logo.png');
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-size: contain;
-    -webkit-mask-position: left center;
-    mask-image: url('img/punx-logo.png');
-    mask-repeat: no-repeat;
-    mask-size: contain;
-    mask-position: left center;
+    background-image: url('img/punx-logo-yellow.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: left center;
     transition: opacity 0.2s ease;
 }
 
@@ -161,6 +156,11 @@ h1, h2, h3, .logo, .section-number, .os-logo {
     z-index: 100;
     background: rgba(0, 0, 0, 0.9);
     backdrop-filter: blur(10px);
+}
+
+.header .logo-mark {
+    position: relative;
+    z-index: 201;
 }
 
 .main-nav {
@@ -356,6 +356,38 @@ section {
     border-radius: 50%;
 }
 
+.hero-reticle {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border: 1px solid var(--color-yellow);
+    border-radius: 50%;
+    position: relative;
+}
+
+.hero-reticle::before,
+.hero-reticle::after {
+    content: '';
+    position: absolute;
+    background: var(--color-yellow);
+}
+
+.hero-reticle::before {
+    left: 50%;
+    top: -8px;
+    bottom: -8px;
+    width: 1px;
+    transform: translateX(-50%);
+}
+
+.hero-reticle::after {
+    top: 50%;
+    left: -8px;
+    right: -8px;
+    height: 1px;
+    transform: translateY(-50%);
+}
+
 .hero-left {
     padding: 4rem 3rem;
     display: flex;
@@ -405,7 +437,7 @@ section {
 
 .hero-title {
     font-size: clamp(4rem, 10vw, 8rem);
-    line-height: 0.85;
+    line-height: 1;
     margin-bottom: 1.5rem;
 }
 
@@ -596,6 +628,19 @@ section {
     animation-play-state: paused;
 }
 
+.client-logo {
+    height: 30px;
+    width: auto;
+    object-fit: contain;
+    opacity: 0.8;
+    flex-shrink: 0;
+    transition: opacity 0.25s ease;
+}
+
+.client-logo:hover {
+    opacity: 1;
+}
+
 /* Work */
 .work {
     display: grid;
@@ -618,7 +663,7 @@ section {
     margin-top: 1rem;
     padding: 1rem;
     background: #111;
-    border-radius: 28px;
+    border-radius:0;
     box-shadow: 0 40px 100px rgba(0, 0, 0, 0.15);
 }
 
@@ -815,22 +860,48 @@ section {
 }
 
 .innovation-card, .innovation-cta {
-    padding: 3rem;
+    padding: 2rem;
+}
+
+.innovation-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+}
+
+.innovation-cta {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 300px;
+    gap: 1.5rem;
+    min-height: 220px;
+    position: relative;
+    overflow: hidden;
 }
 
-.innovation-card.black-bg, .innovation-cta.black-bg {
+.innovation-cta::after {
+    content: '';
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 56px;
+    height: 56px;
+    background-image: radial-gradient(var(--color-yellow) 1px, transparent 1.5px);
+    background-size: 8px 8px;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.innovation-cta.black-bg {
     background-color: var(--color-bg);
     color: var(--color-text);
 }
 
 .inno-badge {
-    width: 72px;
-    height: 72px;
+    width: 68px;
+    height: 68px;
     object-fit: cover;
+    flex-shrink: 0;
 }
 
 .os-logo {
@@ -839,13 +910,14 @@ section {
 }
 
 .inno-content h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
 }
 
 .inno-content p {
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-bottom: 1.25rem;
     opacity: 0.8;
 }
 
@@ -866,6 +938,11 @@ section {
     object-fit: cover;
     clip-path: polygon(0 0, 100% 0, 62% 14%, 100% 28%, 58% 44%, 100% 60%, 66% 78%, 100% 100%, 0 100%);
     pointer-events: none;
+}
+
+.build-accent ~ * {
+    position: relative;
+    z-index: 1;
 }
 
 .lets-build .section-number,
@@ -998,7 +1075,7 @@ section {
 }
 
 .about-title.hero-title {
-    font-size: clamp(2.2rem, 4.6vw, 3.6rem);
+    font-size: clamp(2.8rem, 6.8vw, 5.5rem);
     line-height: 1.05;
 }
 
@@ -1012,6 +1089,12 @@ section {
     vertical-align: middle;
     border: 2px solid var(--color-yellow);
     border-radius: 50%;
+    color: var(--color-yellow);
+}
+
+.section-dark .arrow-circle {
+    background-color: var(--color-bg);
+    border-color: var(--color-bg);
     color: var(--color-yellow);
 }
 
@@ -1105,14 +1188,6 @@ section {
     background: linear-gradient(180deg, transparent 35%, rgba(0,0,0,0.88) 100%);
 }
 
-.work-tile--gradient {
-    background: linear-gradient(150deg, var(--tile-color, #333) 0%, #050505 75%);
-}
-
-.work-tile--gradient::before {
-    display: none;
-}
-
 .work-tile-content {
     position: relative;
     z-index: 2;
@@ -1139,6 +1214,44 @@ section {
     justify-content: center;
     font-size: 1rem;
     flex-shrink: 0;
+}
+
+/* Work grid case-study tiles: black info panel + photo, side by side */
+.work-grid .work-tile {
+    display: grid;
+    grid-template-columns: minmax(170px, 34%) 1fr;
+    gap: 0;
+    padding: 0;
+}
+
+.work-grid .work-tile::before,
+.work-grid .work-tile::after {
+    content: none;
+}
+
+.work-grid .work-tile-content {
+    justify-content: space-between;
+    padding: 1.75rem;
+}
+
+.work-grid .work-tile-media {
+    position: relative;
+    overflow: hidden;
+}
+
+.work-grid .work-tile-media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: none;
+    transition: transform 0.8s ease;
+}
+
+.work-grid .work-tile:hover .work-tile-media img {
+    transform: scale(1.06);
+    filter: none;
 }
 
 /* Impact stats */
@@ -2092,7 +2205,17 @@ section {
 }
 
 .powered-media {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1.6fr 1fr;
+    gap: 0.75rem;
+    height: 320px;
     margin-top: 2.5rem;
+}
+
+.powered-media .service-media-side {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
 }
 
 /* Milestones */
@@ -2207,6 +2330,7 @@ section {
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
+    font-family: monospace;
     font-size: 0.65rem;
     line-height: 1.6;
     color: var(--color-gray);
@@ -2215,6 +2339,7 @@ section {
 
 .founder-caption strong {
     color: var(--color-yellow);
+    font-family: monospace;
     font-size: 0.65rem;
     letter-spacing: 1px;
     font-weight: 600;
@@ -2246,10 +2371,22 @@ section {
     filter: grayscale(55%) contrast(1.1) brightness(0.65);
 }
 
+.belief-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: var(--color-yellow);
+    mix-blend-mode: color;
+    opacity: 0.75;
+    pointer-events: none;
+}
+
 .belief-card::after {
     content: '';
     position: absolute;
     inset: 0;
+    z-index: 1;
     background: linear-gradient(180deg, transparent 25%, rgba(0, 0, 0, 0.92) 100%);
 }
 
@@ -2426,6 +2563,10 @@ section {
     padding: 4rem 3rem;
 }
 
+.newsletter-banner--accent {
+    padding-left: 15rem;
+}
+
 .newsletter-banner-heading h2 {
     font-family: var(--font-heading);
     font-size: clamp(1.8rem, 3.5vw, 2.5rem);
@@ -2474,6 +2615,225 @@ section {
     cursor: pointer;
     font-size: 1rem;
     flex-shrink: 0;
+}
+
+/* Careers page */
+.hero--careers {
+    min-height: auto;
+    padding-bottom: 3rem;
+}
+
+.hero--careers .hero-right {
+    min-height: 100vh;
+    padding: 1.5rem;
+    display: block;
+}
+
+.career-collage {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas:
+        "portrait video meta meta"
+        "portrait concert concert tall"
+        "small team team tall";
+    gap: 0.6rem;
+    width: 100%;
+    height: 100%;
+}
+
+.collage-cell {
+    position: relative;
+    overflow: hidden;
+    background: #111;
+}
+
+.collage-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(25%);
+}
+
+.collage-cell--portrait { grid-area: portrait; }
+.collage-cell--video { grid-area: video; }
+.collage-cell--concert { grid-area: concert; }
+.collage-cell--tall { grid-area: tall; }
+.collage-cell--small { grid-area: small; }
+.collage-cell--team { grid-area: team; }
+
+.collage-meta {
+    grid-area: meta;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 0.2rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.5px;
+    color: var(--color-gray);
+    text-align: right;
+    padding: 0.5rem;
+}
+
+.collage-meta .hero-coords-label {
+    color: var(--color-yellow);
+    font-weight: 600;
+}
+
+/* How We Work */
+.hwm-row {
+    display: grid;
+    grid-template-columns: minmax(240px, 1fr) 2.6fr;
+    gap: 3rem;
+    align-items: center;
+    padding: 5rem 3rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.hwm-row .section-title {
+    margin-bottom: 1.5rem;
+}
+
+/* Our Culture */
+.culture-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+}
+
+.culture-tile {
+    min-height: 220px;
+    padding: 1.5rem;
+}
+
+/* Open Roles */
+.roles-row {
+    display: grid;
+    grid-template-columns: minmax(240px, 1fr) 2.6fr;
+    gap: 3rem;
+    padding: 5rem 3rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.roles-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    color: var(--color-gray);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    max-width: 240px;
+}
+
+.roles-note .icon-plus {
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+}
+
+.role-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.role-row:first-child {
+    border-top: 1px solid var(--color-border);
+}
+
+.role-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+    flex: 1;
+}
+
+.role-location {
+    color: var(--color-gray);
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.apply-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-yellow);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+}
+
+/* Our Team gallery */
+.team-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr) 1.6fr;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 0.5rem;
+    height: 340px;
+}
+
+.team-cell {
+    position: relative;
+    overflow: hidden;
+    background: #0a0a0a;
+}
+
+.team-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(25%);
+}
+
+.team-cell--wide {
+    grid-column: 5;
+    grid-row: 1 / 3;
+}
+
+.team-cell--label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0.75rem;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    line-height: 1.2;
+    color: #fff;
+}
+
+/* Not seeing your role CTA */
+.role-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 4rem 3rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.role-cta h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+    line-height: 1.1;
+}
+
+.role-cta-text {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.role-cta-text p {
+    color: var(--color-gray);
+    max-width: 320px;
+    line-height: 1.6;
 }
 
 /* Responsive */
@@ -2617,9 +2977,41 @@ section {
     .newsletter-banner {
         justify-content: flex-start;
     }
+    .newsletter-banner--accent {
+        padding-left: 3rem;
+    }
     .newsletter-form-lg {
         width: 100%;
         min-width: 0;
+    }
+    .career-collage {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(5, 140px);
+        grid-template-areas:
+            "portrait video"
+            "portrait meta"
+            "concert concert"
+            "tall small"
+            "tall team";
+    }
+    .hwm-row, .roles-row {
+        grid-template-columns: 1fr;
+    }
+    .culture-row {
+        grid-template-columns: 1fr;
+    }
+    .team-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, 140px);
+        grid-auto-rows: 140px;
+        height: auto;
+    }
+    .team-cell--wide {
+        grid-row: span 1;
+        grid-column: span 2;
+    }
+    .role-row {
+        flex-wrap: wrap;
     }
 }
 
@@ -2766,5 +3158,36 @@ section {
     }
     .newsletter-banner {
         padding: 2.5rem 1.5rem;
+    }
+    .hero--careers .hero-right {
+        min-height: 70vh;
+        padding: 1rem;
+    }
+    .career-collage {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(5, 110px);
+    }
+    .hwm-row, .roles-row {
+        padding: 3.5rem 1.5rem;
+        gap: 2rem;
+    }
+    .role-row {
+        padding: 1.25rem 0;
+    }
+    .role-title {
+        flex-basis: 100%;
+    }
+    .team-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, 110px);
+        grid-auto-rows: 110px;
+        height: auto;
+    }
+    .team-cell--wide {
+        grid-column: span 2;
+        grid-row: span 1;
+    }
+    .role-cta {
+        padding: 3rem 1.5rem;
     }
 }
