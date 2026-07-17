@@ -317,11 +317,12 @@ section {
 }
 
 .hero-rail-label {
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    font-size: 0.7rem;
-    letter-spacing: 2px;
-    margin-top: 1.5rem;
+    font-size: 0.62rem;
+    letter-spacing: 1px;
+    line-height: 1.4;
+    text-align: center;
+    max-width: 56px;
+    margin-top: 1rem;
 }
 
 .hero-rail-label--sub {
@@ -653,6 +654,13 @@ section {
     opacity: 1;
 }
 
+/* Badge/crest-style logos (near-square) render too small at a fixed
+   height next to wide wordmark logos, so give them extra height to
+   match the visual weight of the rest of the strip. */
+.client-logo--badge {
+    height: 52px;
+}
+
 /* Work */
 .work {
     display: grid;
@@ -664,6 +672,10 @@ section {
 
 .section-header {
     max-width: 520px;
+}
+
+.work .section-title {
+    font-size: clamp(2.4rem, 4.8vw, 4.2rem);
 }
 
 .section-header p {
@@ -791,8 +803,12 @@ section {
 .wwd-header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: flex-start;
     margin-bottom: 4rem;
+}
+
+.wwd-header .section-title {
+    font-size: clamp(1.8rem, 3.4vw, 3.2rem);
 }
 
 .wwd-desc {
@@ -807,14 +823,14 @@ section {
 }
 
 .service-card {
-    border-top: 2px solid var(--color-yellow);
-    padding-top: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 0 1.25rem 1.5rem;
 }
 
 .service-img {
     position: relative;
-    margin-bottom: 1.5rem;
-    height: 150px;
+    margin: 0 -1.25rem 1.5rem;
+    height: 175px;
     overflow: hidden;
 }
 
@@ -910,8 +926,8 @@ section {
 }
 
 .inno-badge {
-    width: 68px;
-    height: 68px;
+    width: clamp(96px, 10vw, 140px);
+    height: clamp(96px, 10vw, 140px);
     object-fit: cover;
     flex-shrink: 0;
 }
@@ -1279,24 +1295,32 @@ section {
     display: flex;
     flex: 1;
     flex-wrap: wrap;
-    gap: 3rem;
+    gap: 0;
 }
 
 .impact-item {
     display: flex;
     align-items: center;
     gap: 1.25rem;
+    padding: 0 3rem;
+    border-left: 1px solid var(--color-border);
+}
+
+.impact-item:first-child {
+    padding-left: 0;
+    border-left: none;
 }
 
 .impact-icon {
-    width: 42px;
-    height: 42px;
-    border: 1px solid var(--color-border);
-    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    background: var(--color-yellow);
+    color: var(--color-bg);
+    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-yellow);
+    font-size: 1rem;
     flex-shrink: 0;
 }
 
@@ -1451,6 +1475,25 @@ section {
     border-bottom: 1px solid var(--color-border);
 }
 
+.service-row--light {
+    background: #f2f2f0;
+    color: #111;
+}
+
+.service-row--light .section-number,
+.service-row--light .service-row-info p {
+    color: #444;
+}
+
+.service-row--light .tag-pill {
+    color: #333;
+    border-color: rgba(0,0,0,0.15);
+}
+
+.service-row--light .explore-link {
+    color: var(--color-bg);
+}
+
 .service-row-icon {
     width: 44px;
     height: 44px;
@@ -1496,8 +1539,10 @@ section {
 .service-media {
     display: grid;
     grid-template-columns: 1.7fr 1fr;
+    grid-template-rows: 380px;
     gap: 1rem;
     height: 380px;
+    overflow: hidden;
 }
 
 .service-media-main {
