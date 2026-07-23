@@ -662,6 +662,12 @@ section {
     height: 52px;
 }
 
+/* Petron and Pru Life UK marks are thin/low-ink at the default height
+   and read as barely-there next to the bolder wordmarks in the strip. */
+.client-logo--lg {
+    height: 44px;
+}
+
 /* Work */
 .work {
     display: grid;
@@ -758,14 +764,6 @@ section {
     gap: 0.75rem;
     background: linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.35) 100%);
     pointer-events: none;
-}
-
-.work-card-logo {
-    font-family: var(--font-heading);
-    font-size: clamp(1.75rem, 4vw, 2.75rem);
-    color: var(--color-yellow);
-    letter-spacing: 2px;
-    text-shadow: 0 4px 30px rgba(0,0,0,0.5);
 }
 
 .work-play {
@@ -1146,18 +1144,15 @@ section {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 0.55em;
-    height: 0.55em;
-    font-size: 0.4em;
+    width: 0.62em;
+    height: 0.62em;
+    font-size: 0.28em;
     vertical-align: middle;
     border-radius: 50%;
-    color: var(--color-yellow);
-}
-
-.section-dark .arrow-circle {
+    border: 0.05em solid var(--color-yellow);
     background-color: var(--color-bg);
-    border-color: var(--color-bg);
     color: var(--color-yellow);
+    flex-shrink: 0;
 }
 
 .filter-tabs {

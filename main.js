@@ -52,10 +52,10 @@ window.addEventListener('load', () => {
     if (!stage || !featuredImg || !thumbButtons.length) return;
 
     const items = [
-        { src: 'img/portfolio-tunnel-figure.png', alt: 'Work 1' },
-        { src: 'img/portfolio-eye-punx.png', alt: 'Work 2' },
-        { src: 'img/portfolio-red-armor.png', alt: 'Work 3' },
-        { src: 'img/portfolio-walkie-talkie.png', alt: 'Work 4' },
+        { src: 'img/page/home/home_img_3.webp', alt: 'Featured work' },
+        { src: 'img/portfolio-red-armor.png', alt: 'Work 2' },
+        { src: 'img/portfolio-walkie-talkie.png', alt: 'Work 3' },
+        { src: 'img/portfolio-tunnel-figure.png', alt: 'Work 4' },
     ];
 
     const render = () => {
