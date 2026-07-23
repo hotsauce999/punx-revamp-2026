@@ -120,6 +120,21 @@ window.addEventListener('load', () => {
     });
 })();
 
+// Let's Build page: FAQ accordion
+(() => {
+    const items = document.querySelectorAll('.faq-item');
+    if (!items.length) return;
+
+    items.forEach((item) => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+            const isOpen = item.classList.contains('is-open');
+            items.forEach((i) => i.classList.remove('is-open'));
+            if (!isOpen) item.classList.add('is-open');
+        });
+    });
+})();
+
 // Insights page: filter tabs
 (() => {
     const tabs = document.querySelectorAll('#insightFilterTabs .filter-tab');
